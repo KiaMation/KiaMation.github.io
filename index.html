@@ -17,27 +17,24 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- Form Handling -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        emailjs.init('YOUR_USER_ID');
-    </script>
     
     <style>
-        /* Additional CSS for header improvements */
+        /* Updated Header Styles */
         .logo-header {
             display: flex;
-            align-items: flex-end; /* Align nav with bottom of logo */
-            gap: 2rem;
-            padding-bottom: 0.5rem;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0;
             border-bottom: 1px solid var(--jet);
+            text-align: center;
         }
+        
         .logo-container {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         
         .logo-img {
-            height: 100px; /* Increased from original size */
+            height: 150px; /* Increased size */
             width: auto;
             transition: all 0.3s ease;
         }
@@ -49,19 +46,18 @@
         nav {
             display: flex;
             gap: 1.5rem;
-            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
-        /* For mobile responsiveness */
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
             .logo-img {
-                height: 80px;
+                height: 120px;
             }
             
             nav {
                 gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
             }
         }
     </style>
