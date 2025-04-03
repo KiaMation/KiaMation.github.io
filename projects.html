@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | KiaMation</title>
-    <meta name="description" content="KiaMation's portfolio of automation engineering projects">
+    <title>Projects | KiaMation | Automation Engineering Portfolio</title>
+    <meta name="description" content="Explore KiaMation's automation engineering projects including CI/CD pipelines, infrastructure as code, and process optimization solutions.">
     
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -21,65 +21,123 @@
 <body>
     <header class="logo-header">
         <div class="logo-container">
-            <img src="logo1.jpg" alt="KiaMation" class="logo-img">
+            <img src="logo1.jpg" alt="KiaMation Logo" class="logo-img">
         </div>
         <nav>
             <a href="index.html">HOME</a>
             <a href="about.html">ABOUT</a>
-            <a href="projects.html" class="active">WORK</a>
+            <a href="projects.html" class="active">PROJECTS</a>
+            <a href="blog.html">BLOG</a>
             <a href="contact.html">CONTACT</a>
         </nav>
     </header>
     
     <main>
-        <section class="projects-section">
-            <h2>AUTOMATION PROJECTS</h2>
-            
-            <article class="project-card featured">
-                <h3>CI/CD PIPELINE OPTIMIZATION</h3>
-                <p class="tech-stack">Python | GitHub Actions | Docker | AWS</p>
-                <p>Reduced deployment times by 85% for a SaaS platform serving 50,000+ users through automated testing and containerized deployments.</p>
-                <ul class="project-features">
-                    <li>Implemented zero-downtime deployments</li>
-                    <li>Automated rollback system</li>
-                    <li>Integrated security scanning</li>
-                </ul>
-                <a href="#" class="btn">VIEW CASE STUDY</a>
-            </article>
-            
-            <article class="project-card">
-                <h3>DATA PROCESSING FRAMEWORK</h3>
-                <p class="tech-stack">Python | Apache Airflow | PostgreSQL</p>
-                <p>Built an ETL pipeline processing 2TB of daily financial data with 99.99% accuracy, replacing manual processes.</p>
-                <ul class="project-features">
-                    <li>Real-time data validation</li>
-                    <li>Automatic error recovery</li>
-                    <li>Dashboard for monitoring</li>
-                </ul>
-                <a href="#" class="btn">VIEW DETAILS</a>
-            </article>
-            
-            <article class="project-card">
-                <h3>INFRASTRUCTURE AS CODE</h3>
-                <p class="tech-stack">Terraform | AWS | Kubernetes</p>
-                <p>Automated cloud infrastructure provisioning for a distributed system handling 10,000+ requests per second.</p>
-                <ul class="project-features">
-                    <li>Reduced setup time from days to minutes</li>
-                    <li>Cost optimization through auto-scaling</li>
-                    <li>Disaster recovery automation</li>
-                </ul>
-                <a href="#" class="btn">VIEW REPOSITORY</a>
-            </article>
+        <!-- Projects Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>AUTOMATION ENGINEERING PROJECTS</h1>
+                <p class="subtitle">Practical solutions built with clean code and efficient system design</p>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="projects-showcase">
+            <h2>FEATURED WORK</h2>
+            <div class="project-cards">
+                <article class="project-card">
+                    <div class="project-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                    </div>
+                    <h3>CI/CD PIPELINE OPTIMIZATION</h3>
+                    <p class="tech-stack">Python | GitHub Actions | Docker | AWS</p>
+                    <p>Reduced deployment times by 85% for a SaaS platform serving 50,000+ users through automated testing and containerized deployments.</p>
+                    <ul class="project-details">
+                        <li>Implemented zero-downtime deployments</li>
+                        <li>Automated rollback system</li>
+                        <li>Integrated security scanning</li>
+                    </ul>
+                    <a href="#" class="btn">VIEW CASE STUDY</a>
+                </article>
+                
+                <article class="project-card">
+                    <div class="project-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </div>
+                    <h3>DATA PROCESSING FRAMEWORK</h3>
+                    <p class="tech-stack">Python | Apache Airflow | PostgreSQL</p>
+                    <p>Built an ETL pipeline processing 2TB of daily financial data with 99.99% accuracy, replacing manual processes.</p>
+                    <ul class="project-details">
+                        <li>Real-time data validation</li>
+                        <li>Automatic error recovery</li>
+                        <li>Dashboard for monitoring</li>
+                    </ul>
+                    <a href="#" class="btn">VIEW DETAILS</a>
+                </article>
+                
+                <article class="project-card">
+                    <div class="project-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <h3>INFRASTRUCTURE AS CODE</h3>
+                    <p class="tech-stack">Terraform | AWS | Kubernetes</p>
+                    <p>Automated cloud infrastructure provisioning for a distributed system handling 10,000+ requests per second.</p>
+                    <ul class="project-details">
+                        <li>Reduced setup time from days to minutes</li>
+                        <li>Cost optimization through auto-scaling</li>
+                        <li>Disaster recovery automation</li>
+                    </ul>
+                    <a href="#" class="btn">VIEW REPOSITORY</a>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.167 6.839 9.49.5.09.682-.218.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                        </svg>
+                    </div>
+                    <h3>OPEN SOURCE CONTRIBUTIONS</h3>
+                    <p>Enhancing automation tools through community collaboration:</p>
+                    <ul class="project-details">
+                        <li>Fixed race condition in popular task runner</li>
+                        <li>Improved CLI documentation for dev tools</li>
+                        <li>Submitted PRs for automation frameworks</li>
+                    </ul>
+                    <a href="https://github.com/kiamation" class="btn" target="_blank" rel="noopener noreferrer">VIEW ON GITHUB</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta">
+            <div class="container">
+                <h2>HAVE AN AUTOMATION CHALLENGE?</h2>
+                <p>Let's discuss how we can streamline your workflows and infrastructure.</p>
+                <a href="contact.html" class="btn btn-large">CONTACT ME</a>
+            </div>
         </section>
     </main>
-    
+
     <footer>
-        <p>© <script>document.write(new Date().getFullYear())</script> KiaMation | Code.Automate.Dominate</p>
-        <p>
-            <a href="https://github.com/kiamation" target="_blank">GITHUB</a> •
-            <a href="https://linkedin.com/in/yourprofile" target="_blank">LINKEDIN</a> •
-            <a href="mailto:contact@kiamation.com">EMAIL</a>
-        </p>
+        <div class="container">
+            <p>© <script>document.write(new Date().getFullYear())</script> KiaMation | Code.Automate.Dominate</p>
+            <div class="footer-links">
+                <a href="https://github.com/kiamation" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:KiaMation01@gmail.com">Email</a>
+                <a href="blog.html">Blog</a>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -87,8 +145,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.body.style.opacity = '1';
             
-            // Highlight current page in nav
-            const currentPage = location.pathname.split('/').pop();
+            // Set active nav link
+            const currentPage = location.pathname.split('/').pop() || 'index.html';
             document.querySelectorAll('nav a').forEach(link => {
                 if (link.getAttribute('href') === currentPage) {
                     link.classList.add('active');
