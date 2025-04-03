@@ -17,6 +17,54 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Form Handling -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init('YOUR_USER_ID');
+    </script>
+    
+    <style>
+        /* Additional CSS for header improvements */
+        .logo-header {
+            display: flex;
+            align-items: flex-end; /* Align nav with bottom of logo */
+            gap: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--jet);
+        }
+        .logo-container {
+            margin-bottom: 1rem;
+        }
+        
+        .logo-img {
+            height: 100px; /* Increased from original size */
+            width: auto;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+        
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        /* For mobile responsiveness */
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 80px;
+            }
+            
+            nav {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="logo-header">
