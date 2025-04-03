@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a CI/CD Pipeline from Scratch | KiaMation</title>
+    <meta name="description" content="Step-by-step guide to setting up CI/CD with GitHub Actions and Docker">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .article-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        pre {
+            background: #2d2d2d;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            color: #f8f8f2;
+            margin: 1.5rem 0;
+        }
+        code {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+        }
+        .article-meta {
+            margin: 1rem 0 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        h2 {
+            margin-top: 2.5rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            margin-top: 1.8rem;
+        }
+        .terminal {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            margin: 1rem 0;
+        }
+        .terminal::before {
+            content: "$ ";
+            color: #7fdbca;
+        }
+    </style>
+</head>
+<body>
+    <header class="logo-header">
+        <div class="logo-container">
+            <img src="../logo1.jpg" alt="KiaMation" class="logo-img">
+        </div>
+        <nav>
+            <a href="../index.html">HOME</a>
+            <a href="../about.html">ABOUT</a>
+            <a href="../projects.html">PROJECTS</a>
+            <a href="../blog.html" class="active">BLOG</a>
+            <a href="../contact.html">CONTACT</a>
+        </nav>
+    </header>
+    
+    <main class="article-page">
+        <article class="article-content">
+            <span class="article-category">CI/CD</span>
+            <h1>Building a CI/CD Pipeline from Scratch</h1>
+            
+            <div class="article-meta">
+                <span class="date">June 20, 2023</span>
+                <span class="reading-time">8 min read</span>
+            </div>
+            
+            <img src="../images/cicd-pipeline.jpg" alt="CI/CD Pipeline Diagram" loading="lazy">
+            
+            <p><em>A step-by-step guide to setting up a complete continuous integration and deployment pipeline using GitHub Actions and Docker.</em></p>
+            
+            <h2>Introduction</h2>
+            <p>In today's fast-paced development environment, Continuous Integration and Continuous Deployment (CI/CD) pipelines are essential for delivering high-quality software quickly. This guide will walk you through setting up a complete pipeline that automatically tests, builds, and deploys your code.</p>
+            
+            <h2>Prerequisites</h2>
+            <ul>
+                <li>A <strong>GitHub account</strong></li>
+                <li><strong>Docker</strong> installed locally</li>
+                <li>Basic understanding of <strong>Git, YAML, and Docker</strong></li>
+            </ul>
+            
+            <h2>Step 1: Setting Up the Project</h2>
+            <p>We'll use a Node.js application as an example, but this approach works for any language:</p>
+            
+            <h3>Project Structure</h3>
+            <pre><code>my-ci-cd-app/
+├── src/
+│   └── index.js       # Simple Express server
+├── test/
+│   └── app.test.js    # Jest tests
+├── Dockerfile         # Docker configuration
+├── .github/workflows/
+│   └── ci-cd.yml      # GitHub Actions workflow
+├── package.json       # Node.js dependencies
+└── README.md</code></pre>
+            
+            <h3>Example index.js</h3>
+            <pre><code class="language-javascript">const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello, CI/CD Pipeline!');
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});</code></pre>
+            
+            <h3>Example Test File</h3>
+            <pre><code class="language-javascript">const request = require('supertest');
+const app = require('../src/index');
+
+describe('GET /', () => {
+  it('responds with Hello, CI/CD Pipeline!', async () => {
+    const response = await request(app).get('/');
+    expect(response.statusCode).toBe(200);
+    expect(response.text).toBe('Hello, CI/CD Pipeline!');
+  });
+});</code></pre>
+            
+            <h2>Step 2: Dockerizing the Application</h2>
+            <p>Create a <code>Dockerfile</code> in your project root:</p>
+            
+            <pre><code class="language-dockerfile"># Use official Node.js image
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy source code
+COPY . .
+
+# Run tests (optional, can be done in CI)
+RUN npm test
+
+# Expose port
+EXPOSE 3000
+
+# Start the app
+CMD ["node", "src/index.js"]</code></pre>
+            
+            <h3>Testing Locally</h3>
+            <div class="terminal">docker build -t my-ci-cd-app .</div>
+            <div class="terminal">docker run -p 3000:3000 my-ci-cd-app</div>
+            
+            <h2>Step 3: Setting Up GitHub Actions</h2>
+            <p>Create <code>.github/workflows/ci-cd.yml</code>:</p>
+            
+            <pre><code class="language-yaml">name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm install
+      - run: npm test
+
+  build-and-push:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm install
+      - run: docker build -t my-ci-cd-app .
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+      - name: Push to Docker Hub
+        run: |
+          docker tag my-ci-cd-app ${{ secrets.DOCKER_HUB_USERNAME }}/my-ci-cd-app:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-ci-cd-app:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server (example)
+        run: |
+          echo "Deployment logic goes here"
+          # Example: ssh into server and pull the new image
+          # ssh user@server "docker pull username/my-ci-cd-app && docker-compose up -d"</code></pre>
+            
+            <h3>Secrets Configuration</h3>
+            <ol>
+                <li>Go to <strong>GitHub Repo → Settings → Secrets → Actions</strong></li>
+                <li>Add:
+                    <ul>
+                        <li><code>DOCKER_HUB_USERNAME</code> (Your Docker Hub username)</li>
+                        <li><code>DOCKER_HUB_TOKEN</code> (Docker Hub access token)</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h2>Step 4: Advanced Deployment Strategies</h2>
+            
+            <h3>Option 1: Kubernetes Deployment</h3>
+            <pre><code class="language-yaml">- name: Deploy to Kubernetes
+  run: |
+    kubectl apply -f k8s-deployment.yaml</code></pre>
+            
+            <h3>Option 2: AWS ECS</h3>
+            <pre><code class="language-yaml">- name: Deploy to AWS ECS
+  uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+  with:
+    task-definition: task-definition.json
+    service: my-service
+    cluster: my-cluster</code></pre>
+            
+            <h2>Best Practices</h2>
+            <ul>
+                <li><strong>Keep Builds Fast</strong> – Optimize Docker layers and parallelize jobs</li>
+                <li><strong>Secure Secrets</strong> – Never hardcode credentials</li>
+                <li><strong>Rollback Strategy</strong> – Ensure you can revert deployments quickly</li>
+                <li><strong>Monitoring</strong> – Integrate logging (e.g., Prometheus, Datadog)</li>
+            </ul>
+            
+            <h2>Conclusion</h2>
+            <p>You've now built a fully automated CI/CD pipeline that:</p>
+            <ul>
+                <li>Runs tests on every commit</li>
+                <li>Builds and pushes Docker images</li>
+                <li>Deploys to your infrastructure</li>
+            </ul>
+            
+            <div class="article-footer">
+                <p><strong>Enjoyed this guide?</strong> Share it on <a href="#">Twitter</a> or <a href="#">LinkedIn</a>!</p>
+                <a href="../blog.html" class="btn">← Back to Blog</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <script>document.write(new Date().getFullYear())</script> KiaMation</p>
+            <div class="footer-links">
+                <a href="https://github.com/yourprofile" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                <a href="mailto:contact@kiamation.com">Email</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
