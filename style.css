@@ -68,7 +68,7 @@ h1 {
 
 h2 {
     font-size: clamp(1.5rem, 4vw, 2rem);
-    margin-bottom: var(--space-lg);
+    margin-bottom: 40px !important;
     text-align: center;
     position: relative;
 }
@@ -137,6 +137,7 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    margin-top: 20px !important;
 }
 
 .btn-text:hover {
@@ -256,9 +257,9 @@ nav a.active {
 }
 
 .project-icon {
-    width: 48px;
-    height: 48px;
-    margin-bottom: var(--space-md);
+    width: 16px;
+    height: 16px;
+    margin-bottom: 12px;
 }
 
 .project-icon svg {
@@ -316,6 +317,7 @@ nav a.active {
 .skills-highlight {
     padding: var(--space-xxl) 0;
     background: var(--night-2);
+    margin-bottom: 50px !important;
 }
 
 .skills-grid {
@@ -328,6 +330,7 @@ nav a.active {
 .skill-category {
     background: var(--night-3);
     padding: var(--space-lg);
+    margin-bottom: 30px;
 }
 
 .skill-category h3 {
@@ -679,14 +682,14 @@ nav a.active {
 .article-meta {
     display: flex;
     gap: var(--space-md);
-    margin: var(--space-sm) 0;
+    margin: 16px 0;
     color: var(--silver-dark);
     font-size: 0.9rem;
 }
 
 .excerpt {
-    margin-bottom: var(--space-lg);
-    line-height: 1.7;
+    margin-bottom: 20px;
+    line-height: 1.8;
 }
 
 /* Article Grid */
