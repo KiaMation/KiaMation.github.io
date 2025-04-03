@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Blog | KiaMation</title>
+    <meta name="description" content="Technical articles about CI/CD pipelines, infrastructure automation, and DevOps practices">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="logo-header">
+        <div class="logo-container">
+            <img src="logo1.jpg" alt="KiaMation" class="logo-img">
+        </div>
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="projects.html">PROJECTS</a>
+            <a href="blog.html" class="active">BLOG</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+    
+    <main class="blog-page">
+        <section class="blog-hero">
+            <div class="container">
+                <h1>AUTOMATION INSIGHTS</h1>
+                <p class="subtitle">Technical articles about CI/CD pipelines, infrastructure automation, and DevOps practices</p>
+            </div>
+        </section>
+
+        <section class="blog-content">
+            <div class="container">
+                <!-- Featured Article -->
+                <article class="featured-article">
+                    <div class="article-image">
+                        <img src="images/cicd-pipeline.jpg" alt="CI/CD Pipeline Diagram" loading="lazy">
+                    </div>
+                    <div class="article-content">
+                        <span class="article-category">CI/CD</span>
+                        <h2>Building a CI/CD Pipeline from Scratch</h2>
+                        <div class="article-meta">
+                            <span class="date">June 20, 2023</span>
+                            <span class="reading-time">8 min read</span>
+                        </div>
+                        <p class="excerpt">A step-by-step guide to setting up a complete continuous integration and deployment pipeline using GitHub Actions and Docker, including automated testing and deployment strategies...</p>
+                        <a href="articles/cicd-pipeline.html" class="btn">READ ARTICLE</a>
+                    </div>
+                </article>
+
+                <!-- Article Grid -->
+                <div class="article-grid">
+                    <!-- Article 1 -->
+                    <article class="article-card">
+                        <div class="card-image">
+                            <img src="images/terraform.jpg" alt="Terraform Infrastructure" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <span class="article-category">Infrastructure</span>
+                            <h3>Terraform Best Practices for Beginners</h3>
+                            <div class="article-meta">
+                                <span class="date">May 15, 2023</span>
+                                <span class="reading-time">6 min read</span>
+                            </div>
+                            <p class="excerpt">Essential patterns and anti-patterns when starting with infrastructure as code, learned from managing personal projects...</p>
+                            <a href="articles/terraform-guide.html" class="btn-text">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="article-card">
+                        <div class="card-image">
+                            <img src="images/bash-scripting.jpg" alt="Bash Script Example" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <span class="article-category">Scripting</span>
+                            <h3>Advanced Bash Scripting Techniques</h3>
+                            <div class="article-meta">
+                                <span class="date">April 28, 2023</span>
+                                <span class="reading-time">10 min read</span>
+                            </div>
+                            <p class="excerpt">Powerful bash scripting patterns for automation, including error handling, argument parsing, and process management...</p>
+                            <a href="articles/bash-scripting.html" class="btn-text">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="article-card">
+                        <div class="card-image">
+                            <img src="images/docker.jpg" alt="Docker Containers" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <span class="article-category">Containers</span>
+                            <h3>Optimizing Docker for Development</h3>
+                            <div class="article-meta">
+                                <span class="date">March 12, 2023</span>
+                                <span class="reading-time">7 min read</span>
+                            </div>
+                            <p class="excerpt">How I reduced container build times by 60% and improved my development workflow with multi-stage builds and caching strategies...</p>
+                            <a href="articles/docker-optimization.html" class="btn-text">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Article 4 -->
+                    <article class="article-card">
+                        <div class="card-image">
+                            <img src="images/monitoring.jpg" alt="Monitoring Dashboard" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <span class="article-category">Monitoring</span>
+                            <h3>Simple Monitoring for Personal Projects</h3>
+                            <div class="article-meta">
+                                <span class="date">February 5, 2023</span>
+                                <span class="reading-time">5 min read</span>
+                            </div>
+                            <p class="excerpt">Implementing lightweight monitoring solutions without enterprise complexity, using Prometheus and Grafana...</p>
+                            <a href="articles/monitoring-guide.html" class="btn-text">Read More →</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="btn btn-outline disabled">← Previous</a>
+                    <span class="page-number">Page 1 of 3</span>
+                    <a href="#" class="btn btn-outline">Next →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>STAY UPDATED</h2>
+                <p>Subscribe to receive new articles about automation and DevOps straight to your inbox</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">SUBSCRIBE</button>
+                </form>
+                <p class="disclaimer">No spam. Unsubscribe anytime.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <script>document.write(new Date().getFullYear())</script> KiaMation | Code.Automate.Dominate</p>
+            <div class="footer-links">
+                <a href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:contact@kiamation.com">Email</a>
+                <a href="rss.xml">RSS</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set active nav link
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('nav a[href="blog.html"]').classList.add('active');
+        });
+    </script>
+</body>
+</html>
