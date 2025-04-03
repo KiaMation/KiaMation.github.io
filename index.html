@@ -4,61 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KiaMation | Code.Automate.Dominate</title>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
+            --jet: #2D2D2D;
+            --night: #0C0C0C;
+            --night-2: #121212;
+            --night-3: #0E0E0E;
+            --night-4: #151515;
             --accent: #3a86ff;
-            --accent-bg: #f5f7ff;
-            --bg: #ffffff;
-            --text: #222222;
-            --text-light: #666666;
-            --font-main: 'Archivo Narrow', sans-serif;
-            --font-mono: 'Overpass Mono', monospace;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-mono: 'Space Mono', monospace;
         }
         
         body {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-            font-family: var(--font-main);
+            background: var(--night);
+            color: #f5f5f5;
+            font-family: var(--font-sans);
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
-        header {
+        .logo-header {
+            background: var(--night-3);
+            padding: 4rem 1rem;
             text-align: center;
-            margin-bottom: 4rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--accent-bg);
+            position: relative;
+            border-bottom: 1px solid var(--jet);
         }
         
         .logo-container {
-            margin-bottom: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
         
         .logo-img {
-            max-width: 300px;
+            max-width: 100%;
             height: auto;
-            margin-bottom: 0.5rem;
+            max-height: 100px;
+            filter: drop-shadow(0 0 10px rgba(58, 134, 255, 0.2));
         }
         
         nav {
-            font-family: var(--font-mono);
-            letter-spacing: 1px;
-            margin-top: 2rem;
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            background: var(--night-3);
+            border-top: 1px solid var(--jet);
         }
         
         nav a {
-            margin: 0 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #aaa;
             text-decoration: none;
-            color: var(--text);
+            padding: 1rem 1.5rem;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
+            position: relative;
         }
         
         nav a:hover {
-            color: var(--accent);
+            color: white;
+            background: var(--night-4);
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        nav a:hover:after {
+            width: 50%;
+        }
+        
+        main {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+        }
+        
+        .project-card {
+            background: var(--night-2);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateX(5px);
+            background: var(--night-4);
         }
         
         h1, h2, h3 {
@@ -66,102 +119,77 @@
             letter-spacing: -0.5px;
         }
         
-        .project-card {
-            border-left: 3px solid var(--accent);
-            padding-left: 1.5rem;
-            margin-bottom: 2.5rem;
-            transition: transform 0.3s ease;
+        .btn {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            padding: 0.5rem 1.2rem;
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
         }
         
-        .project-card:hover {
-            transform: translateX(5px);
+        .btn:hover {
+            background: rgba(58, 134, 255, 0.1);
         }
         
         footer {
             text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--accent-bg);
-            font-size: 0.9rem;
-            color: var(--text-light);
+            padding: 2rem;
+            background: var(--night-3);
             font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: #666;
+            border-top: 1px solid var(--jet);
         }
         
-        /* Creative enhancements */
-        .glow-text {
-            text-shadow: 0 0 10px rgba(58, 134, 255, 0.3);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.6rem 1.2rem;
-            background: var(--accent);
-            color: white;
-            border-radius: 4px;
-            text-decoration: none;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            background: #2a75e6;
-            box-shadow: 0 2px 8px rgba(58, 134, 255, 0.3);
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --accent: #4d96ff;
-                --accent-bg: #1a2a4a;
-                --bg: #121212;
-                --text: #e0e0e0;
-                --text-light: #aaaaaa;
+        @media (max-width: 768px) {
+            .logo-img {
+                max-height: 80px;
+            }
+            nav a {
+                padding: 1rem;
+                font-size: 0.7rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+    <header class="logo-header">
         <div class="logo-container">
-            <!-- Replace with your actual logo image -->
-            <img src="logo.jpg" alt="KiaMation Logo" class="logo-img">
-            <!-- Or use text version if preferred -->
-            <!-- <h1 style="font-family: var(--font-mono); font-size: 2.5rem;">KiaMation</h1>
-            <p style="font-family: var(--font-mono); color: var(--accent);">Code.Automate.Dominate</p> -->
+            <img src="logo.jpg" alt="KiaMation" class="logo-img">
         </div>
-        
         <nav>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/projects">Projects</a>
-            <a href="/contact">Contact</a>
+            <a href="/">HOME</a>
+            <a href="/about">ABOUT</a>
+            <a href="/projects">WORK</a>
+            <a href="/contact">CONTACT</a>
         </nav>
     </header>
     
     <main>
         <section>
-            <h2 class="glow-text">Automation Solutions</h2>
+            <h2>Automation Engineering</h2>
             <article class="project-card">
-                <h3>Process Optimization</h3>
-                <p>Transforming manual workflows into efficient automated systems that save time and reduce errors.</p>
-                <a href="#" class="btn">View Case Study</a>
+                <h3>CI/CD Pipeline</h3>
+                <p>Automated deployment system reducing release cycles from days to minutes.</p>
+                <a href="#" class="btn">VIEW DETAILS</a>
             </article>
             
             <article class="project-card">
-                <h3>Data Pipeline Automation</h3>
-                <p>Custom solutions for collecting, processing, and visualizing data without manual intervention.</p>
-                <a href="#" class="btn">See Details</a>
+                <h3>Data Processing</h3>
+                <p>Custom ETL automation handling 50k+ records daily with 99.9% accuracy.</p>
+                <a href="#" class="btn">CASE STUDY</a>
             </article>
         </section>
     </main>
     
     <footer>
         <p>© <script>document.write(new Date().getFullYear())</script> KiaMation | Code.Automate.Dominate</p>
-        <p>
-            <a href="https://github.com/yourprofile" target="_blank">GitHub</a> •
-            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> •
-            <a href="mailto:contact@kiamation.com">Contact</a>
-        </p>
     </footer>
 </body>
 </html>
