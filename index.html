@@ -3,41 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Site Title</title>
+    <title>KiaMation | Code.Automate.Dominate</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #3a86ff; /* Change this to your preferred color */
+            --accent: #3a86ff;
+            --accent-bg: #f5f7ff;
+            --bg: #ffffff;
+            --text: #222222;
+            --text-light: #666666;
+            --font-main: 'Archivo Narrow', sans-serif;
+            --font-mono: 'Overpass Mono', monospace;
         }
+        
         body {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 2rem 1rem;
+            font-family: var(--font-main);
+            line-height: 1.6;
         }
-        header { text-align: center; margin-bottom: 3rem; }
-        footer { text-align: center; margin-top: 3rem; opacity: 0.7; }
+        
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--accent-bg);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo-img {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 0.5rem;
+        }
+        
+        nav {
+            font-family: var(--font-mono);
+            letter-spacing: 1px;
+            margin-top: 2rem;
+        }
+        
+        nav a {
+            margin: 0 0.5rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+        
+        .project-card {
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin-bottom: 2.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateX(5px);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--accent-bg);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-family: var(--font-mono);
+        }
+        
+        /* Creative enhancements */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(58, 134, 255, 0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #2a75e6;
+            box-shadow: 0 2px 8px rgba(58, 134, 255, 0.3);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --accent: #4d96ff;
+                --accent-bg: #1a2a4a;
+                --bg: #121212;
+                --text: #e0e0e0;
+                --text-light: #aaaaaa;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>KiaMation</h1>
-        <p>Code. Automate. Dominate.</p>
+        <div class="logo-container">
+            <!-- Replace with your actual logo image -->
+            <img src="logo.jpg" alt="KiaMation Logo" class="logo-img">
+            <!-- Or use text version if preferred -->
+            <!-- <h1 style="font-family: var(--font-mono); font-size: 2.5rem;">KiaMation</h1>
+            <p style="font-family: var(--font-mono); color: var(--accent);">Code.Automate.Dominate</p> -->
+        </div>
+        
         <nav>
-            <a href="/">Home</a> •
-            <a href="/about">About</a> •
-            <a href="/projects">Projects</a> •
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/projects">Projects</a>
             <a href="/contact">Contact</a>
         </nav>
     </header>
     
     <main>
-        <!-- Your content goes here -->
-        <h2>Welcome</h2>
-        <p>This is a clean, minimal website hosted on GitHub.</p>
+        <section>
+            <h2 class="glow-text">Automation Solutions</h2>
+            <article class="project-card">
+                <h3>Process Optimization</h3>
+                <p>Transforming manual workflows into efficient automated systems that save time and reduce errors.</p>
+                <a href="#" class="btn">View Case Study</a>
+            </article>
+            
+            <article class="project-card">
+                <h3>Data Pipeline Automation</h3>
+                <p>Custom solutions for collecting, processing, and visualizing data without manual intervention.</p>
+                <a href="#" class="btn">See Details</a>
+            </article>
+        </section>
     </main>
     
     <footer>
-        <p>© KiaMation • Built with Simple.css</p>
+        <p>© <script>document.write(new Date().getFullYear())</script> KiaMation | Code.Automate.Dominate</p>
+        <p>
+            <a href="https://github.com/yourprofile" target="_blank">GitHub</a> •
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> •
+            <a href="mailto:contact@kiamation.com">Contact</a>
+        </p>
     </footer>
 </body>
 </html>
