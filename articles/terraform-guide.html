@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraform Best Practices for Beginners | KiaMation</title>
+    <meta name="description" content="Essential patterns and anti-patterns when starting with infrastructure as code">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .article-content img {
+            max-width: 70%;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        pre {
+            background: #2d2d2d;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            color: #f8f8f2;
+            margin: 1.5rem 0;
+        }
+        code {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+        }
+        .article-meta {
+            margin: 1rem 0 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        h2 {
+            margin-top: 2.5rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            margin-top: 1.8rem;
+        }
+        .terminal {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            margin: 1rem 0;
+        }
+        .terminal::before {
+            content: "$ ";
+            color: #7fdbca;
+        }
+        .do-dont {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .do {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        .dont {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+        }
+        .do-dont h4 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="logo-header">
+        <div class="logo-container">
+            <img src="../logo1.jpg" alt="KiaMation" class="logo-img">
+        </div>
+        <nav>
+            <a href="../index.html">HOME</a>
+            <a href="../about.html">ABOUT</a>
+            <a href="../projects.html">PROJECTS</a>
+            <a href="../blog.html" class="active">BLOG</a>
+            <a href="../contact.html">CONTACT</a>
+        </nav>
+    </header>
+    
+    <main class="article-page">
+        <article class="article-content">
+            <span class="article-category">DevOps</span>
+            <h1>Terraform Best Practices for Beginners</h1>
+            
+            <div class="article-meta">
+                <span class="date">May 15, 2023</span>
+                <span class="reading-time">6 min read</span>
+            </div>
+            
+            <img src="../images/terraform-diagram.jpg" alt="Terraform Workflow Diagram" loading="lazy">
+            
+            <p><em>Essential patterns and anti-patterns when starting with infrastructure as code, learned from managing personal projects.</em></p>
+            
+            <h2>Introduction</h2>
+            <p>Managing infrastructure as code (IaC) with Terraform can streamline deployments, improve reproducibility, and reduce manual errors. However, beginners often fall into common pitfalls that lead to unmaintainable code or security risks. Here are essential best practices to follow from day one.</p>
+            
+            <h2>1. Use a Consistent File & Directory Structure</h2>
+            <p>A well-organized structure improves readability and scalability.</p>
+            
+            <h3>Recommended Structure:</h3>
+            <pre><code>📁 terraform-project/
+├── 📁 modules/          # Reusable components
+│   ├── 📁 vpc/
+│   ├── 📁 ec2/
+├── 📁 environments/     # Environment-specific configs
+│   ├── 📁 dev/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── terraform.tfvars
+│   ├── 📁 prod/
+├── 📄 README.md         # Documentation</code></pre>
+            
+            <div class="do-dont do">
+                <h4> Do:</h4>
+                <ul>
+                    <li>Separate <strong>environments</strong> (dev/staging/prod) to avoid accidental changes</li>
+                    <li>Use <strong>modules</strong> for reusable components (e.g., VPC, databases)</li>
+                </ul>
+            </div>
+            
+            <div class="do-dont dont">
+                <h4> Avoid:</h4>
+                <ul>
+                    <li>Monolithic <code>main.tf</code> files with hundreds of lines</li>
+                    <li>Hardcoding values directly in <code>.tf</code> files</li>
+                </ul>
+            </div>
+            
+            <h2>2. Leverage Variables & terraform.tfvars</h2>
+            <p>Hardcoding values makes your code inflexible and harder to maintain.</p>
+            
+            <h3>Proper Variable Usage:</h3>
+            <pre><code class="language-hcl"># variables.tf
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+  default     = "t3.micro"
+}
+
+# terraform.tfvars (environment-specific)
+instance_type = "t3.small"</code></pre>
+            
+            <h3>Anti-Pattern Example:</h3>
+            <pre><code class="language-hcl">resource "aws_instance" "example" {
+  instance_type = "t3.micro"  # Hardcoded value
+}</code></pre>
+            
+            <h2>3. Always Use State Management</h2>
+            <p>Terraform state (<code>terraform.tfstate</code>) tracks resource mappings. Losing it can cause chaos.</p>
+            
+            <h3>Remote State with S3 and Locking:</h3>
+            <pre><code class="language-hcl">terraform {
+  backend "s3" {
+    bucket         = "my-terraform-state"
+    key            = "dev/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-lock"
+  }
+}</code></pre>
+            
+            <div class="do-dont dont">
+                <h4> Avoid:</h4>
+                <ul>
+                    <li>Committing <code>.tfstate</code> to Git (contains secrets!)</li>
+                    <li>Ignoring state locking (risks corruption with multiple users)</li>
+                </ul>
+            </div>
+            
+            <h2>4. Implement Least-Privilege IAM Policies</h2>
+            <p>Over-permissive IAM roles are a major security risk.</p>
+            
+            <h3>Secure IAM Example:</h3>
+            <pre><code class="language-hcl">resource "aws_iam_role" "ec2_role" {
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Action = "sts:AssumeRole",
+      Effect = "Allow",
+      Principal = { Service = "ec2.amazonaws.com" }
+    }]
+  })
+}</code></pre>
+            
+            <h3>Dangerous Anti-Pattern:</h3>
+            <pre><code class="language-hcl">resource "aws_iam_role_policy_attachment" "admin_access" {
+  role       = aws_iam_role.ec2_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"  # 🚨 Dangerous!
+}</code></pre>
+            
+            <h2>5. Plan & Review Before Applying</h2>
+            <p>Always preview changes to avoid surprises.</p>
+            
+            <div class="terminal">terraform plan -out=tfplan</div>
+            <div class="terminal">terraform apply tfplan</div>
+            
+            <div class="do-dont dont">
+                <h4> Avoid:</h4>
+                <div class="terminal">terraform apply --auto-approve  # Skips review!</div>
+            </div>
+            
+            <h2>6. Use Version Constraints</h2>
+            <p>Unpinned provider versions can break your setup.</p>
+            
+            <h3>Proper Version Pinning:</h3>
+            <pre><code class="language-hcl">terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"  # Allows patches, not major upgrades
+    }
+  }
+}</code></pre>
+            
+            <h2>7. Document with README.md & Comments</h2>
+            <p>Future you (or teammates) will thank you.</p>
+            
+            <h3>Good Documentation Example:</h3>
+            <pre><code class="language-hcl"># This NACL rule allows SSH only from the office IP
+ingress {
+  from_port   = 22
+  to_port     = 22
+  cidr_blocks = ["192.0.2.0/24"]
+}</code></pre>
+            
+            <h2>Final Thoughts</h2>
+            <p>Following these practices early prevents technical debt and security issues. Start small, automate wisely, and always <strong>plan before applying</strong>!</p>
+            
+            <p><strong>Further Reading:</strong></p>
+            <ul>
+                <li><a href="https://developer.hashicorp.com/terraform/docs" target="_blank">Terraform Official Docs</a></li>
+                <li><a href="https://registry.terraform.io/namespaces/terraform-aws-modules" target="_blank">Terraform AWS Modules Registry</a></li>
+            </ul>
+            
+            <div class="article-footer">
+                <p>Did you find this article helpful? Share it with your friends!</p>
+                <a href="../blog.html" class="btn">← Back to Blog</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <script>document.write(new Date().getFullYear())</script> KiaMation</p>
+            <div class="footer-links">
+                <a href="https://github.com/KiaMation" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                <a href="mailto:contact@kiamation.com">Email</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
