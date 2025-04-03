@@ -1,16 +1,79 @@
-<main>
-    <article>
-        <h2>About Me</h2>
-        <p>Hello! I'm [Your Name], a [your profession/role] passionate about...</p>
-        
-        <h3>Skills</h3>
-        <ul>
-            <li>Web development</li>
-            <li>UI/UX design</li>
-            <li>Technical writing</li>
-        </ul>
-        
-        <h3>Education</h3>
-        <p>[Your Degree], [University] - [Year]</p>
-    </article>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | KiaMation</title>
+    <meta name="description" content="Learn about KiaMation's automation engineering expertise and background">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="logo-header">
+        <div class="logo-container">
+            <img src="logo1.jpg" alt="KiaMation" class="logo-img">
+        </div>
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="work.html">WORK</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="about-section">
+            <h2>ABOUT ME</h2>
+            <article class="bio-card">
+                <h3>CODING AUTOMATION SOLUTIONS</h3>
+                <p>I specialize in creating robust automation systems that streamline workflows and eliminate repetitive tasks. With expertise in Python, CI/CD pipelines, and data processing, I build solutions that save hundreds of operational hours.</p>
+                
+                <h3>TECHNICAL BACKGROUND</h3>
+                <ul class="skills-list">
+                    <li>5+ years experience in process automation</li>
+                    <li>Certified AWS Solutions Architect</li>
+                    <li>Open-source contributor to automation tools</li>
+                    <li>Speaker at DevOps conferences</li>
+                </ul>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>2021-Present</h4>
+                        <p>Senior Automation Engineer at TechCorp</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>2018-2021</h4>
+                        <p>DevOps Specialist at AutoSystems</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© <script>document.write(new Date().getFullYear())</script> KiaMation | Code.Automate.Dominate</p>
+        <p>
+            <a href="https://github.com/kiamation" target="_blank">GITHUB</a> •
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">LINKEDIN</a> •
+            <a href="mailto:contact@kiamation.com">EMAIL</a>
+        </p>
+    </footer>
+
+    <script>
+        // Page load animation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
