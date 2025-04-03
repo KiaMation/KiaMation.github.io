@@ -1,0 +1,27 @@
+/* Color scheme */
+:root {
+    --accent: #3a86ff;       /* Primary color */
+    --accent-bg: #f5f7ff;    /* Light background tint */
+    --bg: #ffffff;           /* Page background */
+    --text: #222222;         /* Main text color */
+    --text-light: #666666;   /* Lighter text */
+}
+
+/* Add a subtle border to articles on projects page */
+article {
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Style form inputs */
+input, textarea {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Add hover effect to links */
+a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
