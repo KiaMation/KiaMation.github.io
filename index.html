@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KiaMation | Code.Automate.Dominate</title>
+    <meta name="description" content="Professional automation engineering solutions. Specializing in CI/CD pipelines and data processing systems.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"></noscript>
     <style>
         :root {
             --jet: #2D2D2D;
@@ -31,11 +33,17 @@
             display: flex;
             flex-direction: column;
             font-size: 0.9rem;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
         
         .logo-header {
             background: var(--night-3);
-            padding: 6rem 1rem 4rem;
+            padding: 2rem 1rem 3rem;
             text-align: center;
             position: relative;
             border-bottom: 1px solid var(--jet);
@@ -47,10 +55,16 @@
         }
         
         .logo-img {
-            max-width: 80%;
-            height: auto;
-            max-height: 180px;
+            height: 200px;
+            width: auto;
+            max-width: 90%;
+            object-fit: contain;
             filter: grayscale(100%) brightness(120%);
+            transition: filter 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            filter: grayscale(80%) brightness(130%);
         }
         
         nav {
@@ -97,7 +111,7 @@
         
         main {
             max-width: 900px;
-            margin: 3rem auto;
+            margin: 2rem auto;
             padding: 0 1.5rem;
             flex: 1;
         }
@@ -113,6 +127,18 @@
             margin-bottom: 2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--silver-dark);
         }
         
         .project-card {
@@ -121,11 +147,30 @@
             margin-bottom: 1.5rem;
             border-left: 3px solid var(--silver-dark);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
         .project-card:hover {
             background: var(--night-4);
             border-left-color: var(--silver);
+        }
+        
+        .project-card:before {
+            content: '→';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--silver-dark);
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover:before {
+            opacity: 1;
+            right: 1rem;
         }
         
         p {
@@ -161,17 +206,42 @@
             border-top: 1px solid var(--jet);
         }
         
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Skills Matrix */
+        .skills-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .skill-item {
+            background: var(--night-2);
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            background: var(--night-4);
+            transform: translateY(-3px);
+        }
+        
         @media (max-width: 768px) {
-            .logo-header {
-                padding: 4rem 1rem 3rem;
-            }
             .logo-img {
-                max-height: 120px;
-                max-width: 90%;
+                height: 150px;
             }
             nav a {
                 padding: 1rem;
                 font-size: 0.8rem;
+            }
+            .skills-matrix {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             }
         }
     </style>
@@ -182,32 +252,67 @@
             <img src="logo.jpg" alt="KiaMation" class="logo-img">
         </div>
         <nav>
-            <a href="/">HOME</a>
-            <a href="/about">ABOUT</a>
-            <a href="/projects">WORK</a>
-            <a href="/contact">CONTACT</a>
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#work">WORK</a>
+            <a href="#contact">CONTACT</a>
         </nav>
     </header>
     
     <main>
-        <section>
+        <section id="home">
             <h2>Automation Engineering</h2>
             <article class="project-card">
                 <h3>CI/CD PIPELINE</h3>
                 <p>Automated deployment system reducing release cycles from days to minutes.</p>
-                <a href="#" class="btn">VIEW DETAILS</a>
+                <a href="#work" class="btn">VIEW DETAILS</a>
             </article>
             
             <article class="project-card">
                 <h3>DATA PROCESSING</h3>
                 <p>Custom ETL automation handling 50k+ records daily with 99.9% accuracy.</p>
-                <a href="#" class="btn">CASE STUDY</a>
+                <a href="#work" class="btn">CASE STUDY</a>
             </article>
+        </section>
+        
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-matrix">
+                <div class="skill-item">Python</div>
+                <div class="skill-item">Git</div>
+                <div class="skill-item">Docker</div>
+                <div class="skill-item">AWS</div>
+                <div class="skill-item">CI/CD</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">APIs</div>
+                <div class="skill-item">Bash</div>
+            </div>
         </section>
     </main>
     
-    <footer>
+    <footer id="contact">
         <p>© <script>document.write(new Date().getFullYear())</script> KiaMation | Code.Automate.Dominate</p>
+        <p>
+            <a href="https://github.com/yourprofile" target="_blank">GITHUB</a> •
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">LINKEDIN</a> •
+            <a href="mailto:contact@kiamation.com">EMAIL</a>
+        </p>
     </footer>
+
+    <script>
+        // Preload images
+        const img = new Image();
+        img.src = 'logo.jpg';
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
